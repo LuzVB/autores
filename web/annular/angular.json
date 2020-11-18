@@ -145,5 +145,8 @@
       }
     }
   },
-  "defaultProject": "annular"
+  "defaultProject": "annular",
+  "cli": {
+    "analytics": "d2006206-0fa0-4608-82c8-b63268304809"
+  }
 }

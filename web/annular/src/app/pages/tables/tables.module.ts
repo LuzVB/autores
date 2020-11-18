@@ -11,6 +11,7 @@ import { SelectingComponent } from './selecting/selecting.component';
 import { NgxTableComponent } from './ngx-table/ngx-table.component';
 import { TablesService } from './tables.service';
 import { AutoresComponent } from './autores/autores.component';
+import { LibrosComponent } from './libros/libros.component';
 
 export const routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full'},
@@ -36,7 +37,7 @@ export const routes = [
     SortingComponent, 
     FilteringComponent, 
     NgxTableComponent, 
-    SelectingComponent, AutoresComponent
+    SelectingComponent, AutoresComponent, LibrosComponent
   ],
   providers: [
     TablesService
