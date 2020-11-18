@@ -1,0 +1,53 @@
+<app-content-header 
+    [title]="'Autores'" 
+    [hideBreadcrumb]="false"
+    [hasBgImage]="true" 
+    [class]="'pb-4'"></app-content-header>
+
+<div fxLayout="column" class="p-2">
+    <div class="p-2"> 
+        <div fxLayout="column" class="mat-elevation-z8">           
+            <mat-form-field class="px-3 py-1">
+                <input matInput (keyup)="applyFilter($event)" placeholder="Buscar autor">
+            </mat-form-field> 
+        </div>
+        <mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">       
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+            </ng-container>         
+            <ng-container matColumnDef="nombre">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+            </ng-container>     
+            <ng-container matColumnDef="apellido">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.apellido}} </mat-cell>
+            </ng-container>        
+            <ng-container matColumnDef="fecha">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.fecha | date:'yyyy-MM-dd' }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="estado">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.estado}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="barrio">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Barrio </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.barrio}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="direccion" >
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Direccion </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.direccion}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="libros">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header> Libros </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.libros}} </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="[2,5, 10, 25, 100]" [length]="cantidad"
+        (page)="cambiarPagina($event)"></mat-paginator>
+    </div>
+</div>
