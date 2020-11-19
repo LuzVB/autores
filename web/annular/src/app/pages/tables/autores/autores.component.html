@@ -1,10 +1,11 @@
-<app-content-header 
+<div [hidden]="route.children.length != 0">
+    <app-content-header 
     [title]="'Autores'" 
     [hideBreadcrumb]="false"
     [hasBgImage]="true" 
     [class]="'pb-4'"></app-content-header>
 
-<div fxLayout="column" class="p-2">
+<div fxLayout="column" class="p-2" >
     <div class="p-2"> 
         <div fxLayout="column" class="mat-elevation-z8">           
             <mat-form-field class="px-3 py-1">
@@ -28,10 +29,6 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
                 <mat-cell *matCellDef="let element">{{ element.fecha | date:'yyyy-MM-dd' }}</mat-cell>
             </ng-container>
-            <ng-container matColumnDef="estado">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.estado}} </mat-cell>
-            </ng-container>
             <ng-container matColumnDef="barrio">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Barrio </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.barrio}} </mat-cell>
@@ -44,10 +41,25 @@
                 <mat-header-cell *matHeaderCellDef  mat-sort-header> Libros </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.libros}} </mat-cell>
             </ng-container>
+            <ng-container matColumnDef="acciones">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button mat-button color="primary" [routerLink]="['/tables/autores/edicion/', element.id]" >
+                        <mat-icon>edit</mat-icon>
+                    </button>                    
+                </mat-cell>
+            </ng-container>
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
         <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="[2,5, 10, 25, 100]" [length]="cantidad"
         (page)="cambiarPagina($event)"></mat-paginator>
+        
+    <button mat-fab color="accent" style="float: left" routerLink="/tables/autores/agregar" style="background: #108d058e; color:rgb(240, 239, 239)">
+        <mat-icon>group_add</mat-icon>
+    </button>
     </div>
 </div>
+</div>
+
+<router-outlet></router-outlet>

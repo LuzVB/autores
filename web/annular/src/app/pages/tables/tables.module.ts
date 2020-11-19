@@ -12,12 +12,22 @@ import { NgxTableComponent } from './ngx-table/ngx-table.component';
 import { TablesService } from './tables.service';
 import { AutoresComponent } from './autores/autores.component';
 import { LibrosComponent } from './libros/libros.component';
+import { AgregarAutoresComponent } from './autores/agregar-autores/agregar-autores.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export const routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full'},
-  { path: 'basic', component: BasicComponent, data: { breadcrumb: 'Basic table' } },
+  { path: 'basic', component: BasicComponent,
+
+     data: { breadcrumb: 'Basic table' } 
+},
   { path: 'paging', component: PagingComponent, data: { breadcrumb: 'Paging table' } },
-  { path: 'autores', component: AutoresComponent, data: { breadcrumb: 'Autores' } },
+  { path: 'autores', component: AutoresComponent, 
+  children: [
+    { path: 'agregar', component: AgregarAutoresComponent },
+    { path: 'edicion/:id', component: AgregarAutoresComponent }
+  ],
+  data: { breadcrumb: 'Autores' } },
   { path: 'sorting', component: SortingComponent, data: { breadcrumb: 'Sorting table' } },
   { path: 'filtering', component: FilteringComponent, data: { breadcrumb: 'Filtering table' } },
   { path: 'selecting', component: SelectingComponent, data: { breadcrumb: 'Selecting table' } },
@@ -29,7 +39,9 @@ export const routes = [
     CommonModule,
     RouterModule.forChild(routes),
     NgxDatatableModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     BasicComponent, 
@@ -37,7 +49,7 @@ export const routes = [
     SortingComponent, 
     FilteringComponent, 
     NgxTableComponent, 
-    SelectingComponent, AutoresComponent, LibrosComponent
+    SelectingComponent, AutoresComponent, LibrosComponent, AgregarAutoresComponent
   ],
   providers: [
     TablesService

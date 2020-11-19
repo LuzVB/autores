@@ -1,7 +1,7 @@
 import { Libro } from './../_model/Libro';
 import { Direccion } from './../_model/Direccion';
 
-export class Conductor {
+export class Autor {
     id: number;
     nombre: string;
     apellido: string;

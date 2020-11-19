@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { Settings } from '../../../app.settings.model';
 import { TablesService, Element } from '../tables.service';
 import { AutorService } from './../../../_services/autor.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-autores',
   templateUrl: './autores.component.html',
@@ -19,7 +20,7 @@ export class AutoresComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  public displayedColumns = ['id','nombre', 'apellido', 'fecha','barrio','direccion','libros', 'estado'];
+  public displayedColumns = ['id','nombre', 'apellido', 'fecha','barrio','direccion','libros','acciones'];
   public dataSource: any;
   public settings: Settings;
 
@@ -27,7 +28,8 @@ export class AutoresComponent implements OnInit {
   pageIndex:number =0;
   pageSize: number =2;
   estado:string;
-  constructor(public appSettings:AppSettings, private tablesService:TablesService,private autorService: AutorService) {
+  constructor(public appSettings:AppSettings, private tablesService:TablesService,private autorService: AutorService,
+              public route: ActivatedRoute) {
   }
   
 
