@@ -14,6 +14,8 @@ import { AutoresComponent } from './autores/autores.component';
 import { LibrosComponent } from './libros/libros.component';
 import { AgregarAutoresComponent } from './autores/agregar-autores/agregar-autores.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LectoresComponent } from './lectores/lectores.component';
+import { AgregarLectoresComponent } from './lectores/agregar-lectores/agregar-lectores.component';
 
 export const routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full'},
@@ -28,6 +30,12 @@ export const routes = [
     { path: 'edicion/:id', component: AgregarAutoresComponent }
   ],
   data: { breadcrumb: 'Autores' } },
+  { path: 'lectores', component: LectoresComponent,
+  children: [
+    { path: 'agregar', component: AgregarLectoresComponent },
+    { path: 'edicion/:id', component: AgregarLectoresComponent }
+  ],
+   data: { breadcrumb: 'Lectores' } },
   { path: 'sorting', component: SortingComponent, data: { breadcrumb: 'Sorting table' } },
   { path: 'filtering', component: FilteringComponent, data: { breadcrumb: 'Filtering table' } },
   { path: 'selecting', component: SelectingComponent, data: { breadcrumb: 'Selecting table' } },
@@ -49,7 +57,7 @@ export const routes = [
     SortingComponent, 
     FilteringComponent, 
     NgxTableComponent, 
-    SelectingComponent, AutoresComponent, LibrosComponent, AgregarAutoresComponent
+    SelectingComponent, AutoresComponent, LibrosComponent, AgregarAutoresComponent, LectoresComponent, AgregarLectoresComponent
   ],
   providers: [
     TablesService

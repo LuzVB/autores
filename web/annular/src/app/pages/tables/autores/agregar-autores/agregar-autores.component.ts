@@ -5,6 +5,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Direccion } from './../../../../_model/Direccion';
 import { Autor } from './../../../../_model/Autor'
 import { AutorService } from './../../../../_services/autor.service';
+import {AutoresComponent} from './../../autores/autores.component';
+
 @Component({
   selector: 'app-agregar-autores',
   templateUrl: './agregar-autores.component.html',
@@ -16,6 +18,7 @@ export class AgregarAutoresComponent implements OnInit {
   private id: number;
   private edicion: boolean;
   constructor(private autorService: AutorService,
+              private autores:AutoresComponent,
               private snackBar: MatSnackBar,
               private router: Router,
               private route: ActivatedRoute
@@ -71,12 +74,14 @@ export class AgregarAutoresComponent implements OnInit {
       this.autorService.editar(autor).subscribe(() => {
         this.openSnackBar('Autor Editado');
         this.form.reset();
+        this.autores.listarPaginado();
         this.router.navigate(['/tables/autores']);
       });
     } else {
        this.autorService.guardar(autor).subscribe(() => {
         this.openSnackBar('Autor Guardado');
         this.form.reset();
+        this.autores.listarPaginado();
         this.router.navigate(['/tables/autores']);
       });
       this.form.reset();

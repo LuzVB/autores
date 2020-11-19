@@ -1,0 +1,27 @@
+<div>
+  <app-content-header [title]="'Agregar Lector'" [hideBreadcrumb]="false" [hasBgImage]="true" [class]="'pb-4'">
+  </app-content-header>
+
+  <form [formGroup]="form" #frmLector="ngForm">
+    <mat-card>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center">
+        <mat-form-field>
+          <input matInput placeholder="Nombre" formControlName="nombre" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Apellido" formControlName="apellido" required>
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-raised-button color="primary" (click)="guardar()"
+        style="background: #108d058e; color:rgb(240, 239, 239)" type="submit" [disabled]="frmLector.invalid"
+        routerLink="/tables/lectores">
+        <mat-icon>check</mat-icon>Guardar
+      </button>
+
+      <button mat-raised-button color="warn" type="button" routerLink="/tables/lectores">
+        <mat-icon>close</mat-icon>Cancelar
+      </button>
+    </mat-card>
+  </form>
+
+</div>
