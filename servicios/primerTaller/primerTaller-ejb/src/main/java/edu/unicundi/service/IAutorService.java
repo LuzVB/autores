@@ -10,6 +10,7 @@ import edu.unicundi.dto.AutorLectorDto;
 import edu.unicundi.dto.AutorP;
 import edu.unicundi.entity.Autor;
 import edu.unicundi.entity.AutorLector;
+import edu.unicundi.entity.Lector;
 import edu.unicundi.entity.View_autor_datos;
 import edu.unicundi.exception.ObjectNotFoundException;
 import edu.unicundi.exception.ParamRequiredException;
@@ -50,6 +51,8 @@ public interface IAutorService {
     
     public void editar(Autor autor) throws ParamRequiredException, ObjectNotFoundException;
    
+    public void editarLector(Lector lector) throws ParamRequiredException, ObjectNotFoundException, ParamUsedException;
+             
     public void eliminar(Integer id) throws  ObjectNotFoundException;
     
     public void eliminarOpcion2(Integer id) throws ObjectNotFoundException;
@@ -60,4 +63,9 @@ public interface IAutorService {
     
     public void desasociarAutorLector(AutorLector autorLector) throws ObjectNotFoundException;
     
+    public AbstractFacadePage listarLector(int pag , int size);
+    
+    public Lector listarLectorId(Integer id) throws ObjectNotFoundException;
+    
+    public void guardar(Lector lector) throws ParamRequiredException, ObjectNotFoundException, ParamUsedException;
 }

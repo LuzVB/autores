@@ -6,6 +6,7 @@
 package edu.unicundi.repo.impl;
 
 import edu.unicundi.entity.Autor;
+import edu.unicundi.entity.Lector;
 import edu.unicundi.entity.Libro;
 import edu.unicundi.entity.View_autor_datos;
 import edu.unicundi.repo.AbstractFacade;
@@ -66,10 +67,38 @@ public class AutorRepo  extends AbstractFacade<Autor, Integer> implements IAutor
     }
     
     @Override
+    public List<Lector> listarLector(Integer pag, Integer size) {
+        
+        int pagina = pag *size;
+        this.entity.getEntityManagerFactory().getCache().evictAll();
+        TypedQuery<Lector> lista= this.entity.createNamedQuery("Lector.listarTodo", Lector.class); 
+        lista.setParameter("pag", pagina);
+        lista.setParameter("size", size);               
+        return lista.getResultList();      
+    }
+    
+    @Override
     public View_autor_datos listarGeneralPorId(Integer id) {
         View_autor_datos autor = this.entity.find(View_autor_datos.class, id);
         return autor;
     }
+    
+    @Override
+    public Lector listarLectorId(Integer id) {
+        Lector lector = this.entity.find(Lector.class, id);
+        return lector;
+    }
+    
+    @Override
+    public void guardarLector(Lector lector) {
+        this.entity.persist(lector);
+    }
+    
+    @Override
+    public void editarLector(Lector lector) {
+            this.entity.merge(lector);
+    }
+
     
     @Override
     public List<Autor> listarOpcion2() {
@@ -104,6 +133,14 @@ public class AutorRepo  extends AbstractFacade<Autor, Integer> implements IAutor
     @Override
     public Integer CantidadAutores() {
         Query query = this.entity.createNamedQuery("Autor.cantidadAutores");
+        String consulta = query.getSingleResult().toString();
+        Integer resultado = Integer.parseInt(consulta); 
+        return resultado  ;
+    }
+    
+    @Override
+    public Integer CantidadLectores() {
+        Query query = this.entity.createNamedQuery("Lector.cantidadLectores");
         String consulta = query.getSingleResult().toString();
         Integer resultado = Integer.parseInt(consulta); 
         return resultado  ;

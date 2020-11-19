@@ -6,6 +6,7 @@
 package edu.unicundi.repo;
 
 import edu.unicundi.entity.Autor;
+import edu.unicundi.entity.Lector;
 import edu.unicundi.entity.View_autor_datos;
 import java.util.List;
 
@@ -29,6 +30,8 @@ public interface IAutorRepo {
     
     public Autor listarPorId(Integer id);
     
+    public Lector listarLectorId(Integer id);
+            
     public View_autor_datos listarGeneralPorId(Integer id);
                 
     public Autor listarPorIdA(Integer id); 
@@ -39,11 +42,19 @@ public interface IAutorRepo {
             
     public void guardar(Autor autor);
     
+    public void guardarLector(Lector lector);
+    
     public void editar(Autor autor);
    
+    public void editarLector(Lector lector);
+            
     public void eliminar(Autor autor);  
     
     public void bloquear(Integer id);
     
     public void habilitar(Integer id) ;
+    
+    public List<Lector> listarLector(Integer pag, Integer size);
+    
+    public Integer CantidadLectores();
 }

@@ -10,6 +10,7 @@ import edu.unicundi.dto.AutorLectorDto;
 import edu.unicundi.dto.AutorP;
 import edu.unicundi.entity.Autor;
 import edu.unicundi.entity.AutorLector;
+import edu.unicundi.entity.Lector;
 import edu.unicundi.entity.View_autor_datos;
 import edu.unicundi.exception.ObjectNotFoundException;
 import edu.unicundi.exception.ParamRequiredException;
@@ -81,8 +82,39 @@ public class AutorController {
         return Response.status(Response.Status.OK).entity(listarAutor).build();       
     }
     
-        
-   
+    @Path("/listarLector/page={paginado}/size={size}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listarLector(@PathParam("paginado") int pag, @PathParam("size") int size)  {
+        AbstractFacadePage listarAutor = service.listarLector(pag,size);
+        return Response.status(Response.Status.OK).entity(listarAutor).build();         
+    } 
+    
+    @Path("/listarLectorId/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listarLectorId(@PathParam("id") Integer id) throws ObjectNotFoundException  {
+        Lector autor = service.listarLectorId(id);
+        return Response.status(Response.Status.OK).entity(autor).build(); //.entity(service.getListaProfesores()).build();
+    }
+    
+    @Path("/guardarLector")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response guardar(@Valid Lector lector)  throws ParamRequiredException, ObjectNotFoundException, ParamUsedException {
+        service.guardar(lector);
+        return Response.status(Response.Status.CREATED).build();
+    }
+    
+    @Path("/editarLector")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response editar(@Valid Lector lector) throws ParamRequiredException, ObjectNotFoundException, ParamUsedException {
+        service.editarLector(lector);
+        return Response.status(Response.Status.OK).build();
+    }
     
     @Path("/listarLector/{idAutor}")
     @GET

@@ -11,6 +11,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,6 +24,10 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "lector")
+@NamedNativeQueries({
+    @NamedNativeQuery(name = "Lector.listarTodo", query = "SELECT * FROM lector order by id OFFSET ?pag ROWS FETCH FIRST  ?size ROWS ONLY", resultClass = Lector.class),
+    @NamedNativeQuery(name = "Lector.cantidadLectores", query = "select count(id)from lector")
+})
 public class Lector implements Serializable{
     
     @Id

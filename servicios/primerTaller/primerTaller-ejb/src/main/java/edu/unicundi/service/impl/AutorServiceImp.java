@@ -11,6 +11,7 @@ import edu.unicundi.dto.AutorLectorDto;
 import edu.unicundi.dto.AutorP;
 import edu.unicundi.entity.Autor;
 import edu.unicundi.entity.AutorLector;
+import edu.unicundi.entity.Lector;
 import edu.unicundi.entity.Libro;
 import edu.unicundi.entity.View_autor_datos;
 import edu.unicundi.exception.ObjectNotFoundException;
@@ -48,6 +49,14 @@ public class AutorServiceImp implements IAutorService {
           return paginado;
     }
     
+    @Override
+    public AbstractFacadePage listarLector(int pag , int size) {
+          AbstractFacadePage paginado = new AbstractFacadePage() {};
+          Integer validacion = repo.CantidadLectores();
+          paginado.setContent(repo.listarLector(pag ,size));
+          paginado.setTotalElements(validacion);
+          return paginado;
+    }
     
     @Override
     public View_autor_datos listarGeneralPorId(Integer id) throws ObjectNotFoundException{
@@ -56,6 +65,30 @@ public class AutorServiceImp implements IAutorService {
             return autor;
         else
             throw new ObjectNotFoundException("El autor no esta registrado.");
+    }
+    
+    @Override
+    public Lector listarLectorId(Integer id) throws ObjectNotFoundException{
+        Lector lector = repo.listarLectorId(id);
+        if(lector != null) 
+            return lector;
+        else
+            throw new ObjectNotFoundException("El Lector no esta registrado.");
+    }
+
+   @Override
+    public void guardar(Lector lector) throws ParamRequiredException, ObjectNotFoundException, ParamUsedException{
+         repo.guardarLector(lector);
+    }
+    
+    @Override
+    public void editarLector(Lector lector) throws ParamRequiredException, ObjectNotFoundException, ParamUsedException {
+       if(lector.getId() == null)    
+            throw new ParamRequiredException("Id es requerido para edición");
+        else {
+            this.listarLectorId(lector.getId()); 
+            repo.editarLector(lector);
+        } 
     }
     
     @Override
