@@ -5,6 +5,7 @@
  */
 package edu.unicundi.repo.impl;
 
+import edu.unicundi.entity.Autor;
 import edu.unicundi.entity.AutorLector;
 import edu.unicundi.repo.IAutorLectorRepo;
 import java.util.List;
@@ -36,6 +37,23 @@ public class IAutorLectorRepoImpl implements IAutorLectorRepo{
         listaAutorLector.setParameter("idAutor", idAutor);
         return listaAutorLector.getResultList();                
     }
+    
+    @Override
+    public List<AutorLector> listarLectorAutor(Integer idAutor) {
+        this.entity.getEntityManagerFactory().getCache().evictAll();
+        TypedQuery<AutorLector> listaAutorLector = this.entity.createNamedQuery("AutorLector.listarAutorPorLector", AutorLector.class);                
+        listaAutorLector.setParameter("idLector", idAutor);
+        return listaAutorLector.getResultList();                
+    }
+    
+    @Override
+    public List<Autor> listarLectorAutorNo(Integer idAutor) {
+        this.entity.getEntityManagerFactory().getCache().evictAll();
+        TypedQuery<Autor> listaAutorLector = this.entity.createNamedQuery("AutorLector.listarAutorPorLectorNo", Autor.class);                
+        listaAutorLector.setParameter("idLector", idAutor);
+        return listaAutorLector.getResultList();                
+    }
+    
     
     @Override
     public int  desasociarLector(int idAutor, int idLector) {

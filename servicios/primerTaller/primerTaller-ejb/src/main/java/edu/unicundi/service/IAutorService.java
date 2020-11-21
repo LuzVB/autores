@@ -59,6 +59,10 @@ public interface IAutorService {
     
     public List<AutorLectorDto> listarAutorLector(Integer idAutor);
     
+    public List<AutorLectorDto> listarLectorAutor(Integer idAutor);
+    
+    public List<AutorP> listarLectorAutorNo(Integer idAutor);
+            
     public void asociarAutorLector(AutorLector autorLector) ;
     
     public void desasociarAutorLector(AutorLector autorLector) throws ObjectNotFoundException;

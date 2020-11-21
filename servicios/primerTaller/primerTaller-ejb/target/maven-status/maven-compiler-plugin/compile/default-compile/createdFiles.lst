@@ -23,6 +23,7 @@ edu\unicundi\service\IAutorService.class
 edu\unicundi\dto\DireccionDto.class
 edu\unicundi\exception\ObjectNotFoundException.class
 edu\unicundi\service\ILibroService.class
+edu\unicundi\service\impl\AutorServiceImp$3.class
 edu\unicundi\repo\impl\IAutorLectorRepoImpl.class
 edu\unicundi\repo\AbstractFacade.class
 edu\unicundi\dto\AutorP.class

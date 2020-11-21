@@ -165,6 +165,48 @@ public class AutorServiceImp implements IAutorService {
         }        
         return lista;
     }
+    
+    @Override
+    public List<AutorLectorDto> listarLectorAutor(Integer idAutor) {
+        List<AutorLector> listaAutorLector = repoAutorLector.listarLectorAutor(idAutor);
+        List<AutorLectorDto> lista = new ArrayList<>();
+        for (AutorLector lis : listaAutorLector) {
+            ModelMapper modelMapper = new ModelMapper();
+            AutorLectorDto autorLectorDto = modelMapper.map(lis, AutorLectorDto.class);   
+            autorLectorDto.getAutor().setLibro(null);
+            //autorLectorDto.setAutor(null);
+            lista.add(autorLectorDto);            
+        }        
+        return lista;
+    }
+    
+    @Override
+    public List<AutorP> listarLectorAutorNo(Integer idAutor) { 
+        List<Autor> listaAutorLector = repoAutorLector.listarLectorAutorNo(idAutor);
+        List<AutorP> lista = new ArrayList<>();
+        if(listaAutorLector.size()== 0){
+            List<Autor> listaAutor = repo.listar("Autor.listarTodo");
+            List<AutorP> listaAutorDto = new ArrayList<>();
+            for (Autor lis : listaAutor) {
+                ModelMapper modelMapper = new ModelMapper();
+                AutorP autorDto = modelMapper.map(lis, AutorP.class);
+                listaAutorDto.add(autorDto);
+            }
+            for (AutorP aut : listaAutorDto) {
+                aut.setLibro(null);
+            }  
+             return listaAutorDto;
+
+        }else{for (Autor lis : listaAutorLector) {
+            ModelMapper modelMapper = new ModelMapper();
+            AutorP autorLectorDto = modelMapper.map(lis, AutorP.class);   
+            autorLectorDto.setLibro(null);
+            lista.add(autorLectorDto);            
+        }
+       
+        }
+        return lista;
+    }
       
 @Override
     public void asociarAutorLector(AutorLector autorLector) {

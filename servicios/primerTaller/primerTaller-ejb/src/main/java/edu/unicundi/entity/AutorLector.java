@@ -26,6 +26,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "AutorLector.listarLectorPorAutor", query = "SELECT a FROM AutorLector a Where a.autor.id = :idAutor"),
     @NamedQuery(name = "AutorLector.listarAutorPorLector", query = "SELECT a FROM AutorLector a Where a.lector.id = :idLector"), 
+    //@NamedQuery(name = "AutorLector.listarAutorPorLectorNo", query = "SELECT a FROM AutorLector a Where not a.lector.id = :idLector"), 
     @NamedQuery(name = "AutorLector.desasociar", query = "Delete FROM AutorLector a Where a.lector.id = :idLector and a.autor.id = :idAutor")  
 })
 public class AutorLector implements Serializable{

@@ -5,6 +5,7 @@
  */
 package edu.unicundi.repo;
 
+import edu.unicundi.entity.Autor;
 import edu.unicundi.entity.AutorLector;
 import java.util.List;
 import javax.ejb.Local;
@@ -19,6 +20,10 @@ public interface IAutorLectorRepo {
     public void guardar(AutorLector autorLector);
     
     public List<AutorLector> listarAutorLector(Integer idAutor);
+    
+     public List<AutorLector> listarLectorAutor(Integer idAutor);
+    
+    public List<Autor> listarLectorAutorNo(Integer idAutor);
     
     public int  desasociarLector(int idAutor, int idLector);
     

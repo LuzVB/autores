@@ -43,7 +43,8 @@ import javax.persistence.TemporalType;
 @NamedNativeQueries({
     @NamedNativeQuery(name = "Autor.listarTodoConsultaNativo", query = "select a.id, a.nombre, a.apellido, a.fecha from public.autor a", resultClass = Autor.class),
     @NamedNativeQuery(name = "Autor.listarPagina", query = "SELECT * FROM autor order by id OFFSET ?pag ROWS FETCH FIRST  ?size ROWS ONLY", resultClass = Autor.class),
-    @NamedNativeQuery(name = "Autor.cantidadAutores", query = "select count(id)from autor")
+    @NamedNativeQuery(name = "Autor.cantidadAutores", query = "select count(id)from autor"),
+    @NamedNativeQuery(name = "AutorLector.listarAutorPorLectorNo", query = "SELECT autor.id,autor.nombre,autor.apellido FROM autor WHERE autor.id NOT IN (SELECT autor_lector.autor_id FROM autor_lector WHERE autor_lector.lector_id = ?idLector)", resultClass = Autor.class),
 })
 public class Autor implements Serializable {
     

@@ -122,7 +122,23 @@ public class AutorController {
     public Response listarLector(@PathParam("idAutor") Integer id)  {
         List<AutorLectorDto> lista = service.listarAutorLector(id);
         return Response.status(Response.Status.OK).entity(lista).build();       
-    }        
+    }   
+    
+     @Path("/listarAutor/{idLector}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listarAutor(@PathParam("idLector") Integer id) {
+        List<AutorLectorDto> lista = service.listarLectorAutor(id);
+        return Response.status(Response.Status.OK).entity(lista).build();       
+    } 
+    
+    @Path("/listarAutorNo/{idLector}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listarAutorNo(@PathParam("idLector") Integer id) {
+        List<AutorP> lista = service.listarLectorAutorNo(id);
+        return Response.status(Response.Status.OK).entity(lista).build();       
+    } 
     
     @Path("/asociarLector")
     @POST
