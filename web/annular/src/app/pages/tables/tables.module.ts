@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LectoresComponent } from './lectores/lectores.component';
 import { AgregarLectoresComponent } from './lectores/agregar-lectores/agregar-lectores.component';
 
+
 export const routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full'},
   { path: 'basic', component: BasicComponent,
@@ -49,7 +50,7 @@ export const routes = [
     NgxDatatableModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [
     BasicComponent, 

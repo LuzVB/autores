@@ -6,7 +6,9 @@ import { Settings } from '../../../app.settings.model';
 import { TablesService, Element } from '../tables.service';
 import { LectoresService } from './../../../_services/lectores.service';
 import { ActivatedRoute } from '@angular/router';
-
+import { MatDialog } from '@angular/material/dialog';
+import {AsociacionAutorComponent} from './asociacion-autor/asociacion-autor.component';
+import {Lector} from './../../../_model/Lector';
 @Component({
   selector: 'app-lectores',
   templateUrl: './lectores.component.html',
@@ -28,7 +30,8 @@ export class LectoresComponent implements OnInit {
   pageSize: number =2;
   estado:string;
   constructor(public appSettings:AppSettings, private tablesService:TablesService,private lectorService: LectoresService,
-              public route: ActivatedRoute) {
+              public route: ActivatedRoute,
+              public dialog: MatDialog,) {
   }
 
   listarPaginado() {
@@ -52,4 +55,24 @@ export class LectoresComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   } 
+
+  abrirDialogo(lector: Lector) {
+
+    const dialogRef = this.dialog.open(AsociacionAutorComponent, {
+      width: '400px',
+      data: { nombre: lector.nombre, id: lector.id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != null) {
+          if(result.event === 'Elimino') {
+            console.log('Elimino');
+            console.log(result.data);
+          } else if (result.event === 'Cancelo') { 
+            console.log('Cancelo');
+          }
+      }
+    });
+    
+  }
 }

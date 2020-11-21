@@ -40,7 +40,7 @@ import { ApplicationsComponent } from './theme/components/applications/applicati
 import { MessagesComponent } from './theme/components/messages/messages.component';
 import { UserMenuComponent } from './theme/components/user-menu/user-menu.component';
 import { FavoritesComponent } from './theme/components/favorites/favorites.component';
-
+import { AsociacionAutorComponent } from './../app/pages/tables/lectores/asociacion-autor/asociacion-autor.component';
 
 @NgModule({
   imports: [
@@ -76,13 +76,15 @@ import { FavoritesComponent } from './theme/components/favorites/favorites.compo
     ApplicationsComponent,
     MessagesComponent,
     UserMenuComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    AsociacionAutorComponent
   ],
   providers: [
     AppSettings,
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
     { provide: OverlayContainer, useClass: CustomOverlayContainer }
   ],
+  entryComponents: [AsociacionAutorComponent],
   bootstrap: [
     AppComponent
   ]

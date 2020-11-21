@@ -1,0 +1,45 @@
+<div >
+  <button mat-button color="warn" (click)="cerrarDialogo()" style="float: right"> 
+  <mat-icon>clear</mat-icon></button>
+  <br>
+<div>
+  <br>
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <ng-container matColumnDef="nombre">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.autor.nombre}} {{element.autor.apellido}}  </mat-cell>
+      </ng-container>
+          
+      <ng-container matColumnDef="acciones">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+              <button mat-button color="warn" (click)="desaSociarLector(element.autor.id)">
+                  <mat-icon>clear</mat-icon>
+              </button>
+          </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </table>
+  
+  <mat-paginator [pageSize]="5" [pageSizeOptions]="[2,5, 10, 25, 100]" ></mat-paginator>    
+   
+  <br>
+
+  <mat-form-field appearance="fill">
+      <mat-label>Autores <mat-icon>groups</mat-icon></mat-label>
+      <mat-select [(value)]="selectedValue" required>
+        <mat-option *ngFor="let dataAutor of dataAutor" [value]="dataAutor.id"
+          (click)="autorSeleccionado(dataAutor.id)">
+          {{dataAutor.nombre}} {{dataAutor.apellido}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-button   style="color: #108d058e" (click)="asociarLector()">
+      <mat-icon>done</mat-icon>Asociar Autor
+  </button>
+</div>
+</div>
