@@ -5,6 +5,7 @@
  */
 package edu.unicundi.service.impl;
 
+import edu.unicundi.dto.AbstractFacadePage;
 import edu.unicundi.dto.LibroDto;
 import edu.unicundi.entity.Libro;
 import edu.unicundi.exception.ObjectNotFoundException;
@@ -28,6 +29,13 @@ public class LibroServiceImpl implements ILibroService {
     private ILibroRepo repo;
     
     @Override
+    public AbstractFacadePage listarlibros(int pag , int size) {
+          AbstractFacadePage paginado = new AbstractFacadePage() {};
+          Integer validacion = repo.CantidadLibros();
+          paginado.setContent(repo.listarLibro(pag ,size));
+          paginado.setTotalElements(validacion);
+          return paginado;
+    }
     public List<LibroDto> listar() {
         List<Libro> listaLibro = repo.listar("Libro.listarTodo");
         List<LibroDto> libroDto = new ArrayList<>();
@@ -64,12 +72,12 @@ public class LibroServiceImpl implements ILibroService {
 
     @Override
     public void guardar(Libro libro) throws ParamRequiredException {
-         if(libro.getAutor() == null || libro.getAutor().getId() == null) {
-             throw new ParamRequiredException("IdAutor es requerido para guardar");
-         }  else {
+//         if(libro.getAutor() == null || libro.getAutor().getId() == null) {
+//             throw new ParamRequiredException("IdAutor es requerido para guardar");
+//         }  else {
              //libro.getAutor().getLibro().add(libro);
              repo.guardar(libro);
-         }
+//         }
     }
 
     @Override

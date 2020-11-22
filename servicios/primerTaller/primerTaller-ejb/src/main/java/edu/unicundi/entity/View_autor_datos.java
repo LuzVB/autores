@@ -54,11 +54,14 @@ public class View_autor_datos implements Serializable {
     
     @Column(name = "libros", nullable = false, length = 25)
     private int  libros ;
+    
+    @Column(name = "lector", nullable = false, length = 25)
+    private int  lector ;
 
     public View_autor_datos() {
     }
 
-    public View_autor_datos(Integer id, String nombre, String apellido, Boolean estado, Date fecha, String direccion, String barrio, int libros) {
+    public View_autor_datos(Integer id, String nombre, String apellido, Boolean estado, Date fecha, String direccion, String barrio, int libros, int lector) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -67,6 +70,15 @@ public class View_autor_datos implements Serializable {
         this.direccion = direccion;
         this.barrio = barrio;
         this.libros = libros;
+        this.lector = lector;
+    }
+
+    public int getLector() {
+        return lector;
+    }
+
+    public void setLector(int lector) {
+        this.lector = lector;
     }
 
     public Integer getId() {

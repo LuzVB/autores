@@ -5,6 +5,7 @@
  */
 package edu.unicundi.controller;
 
+import edu.unicundi.dto.AbstractFacadePage;
 import edu.unicundi.dto.LibroDto;
 import edu.unicundi.entity.Libro;
 import edu.unicundi.exception.ObjectNotFoundException;
@@ -35,11 +36,11 @@ public class LibroController {
     @EJB
     private ILibroService service;
     
-    @Path("/listar")
+    @Path("/listar/page={paginado}/size={size}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listar()  {
-        List<LibroDto> listarLibro = service.listar();
+    public Response listar(@PathParam("paginado") int pag, @PathParam("size") int size)  {
+        AbstractFacadePage listarLibro = service.listarlibros(pag, size);
         return Response.status(Response.Status.OK).entity(listarLibro).build();       
     }        
 

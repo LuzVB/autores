@@ -6,6 +6,7 @@
 package edu.unicundi.repo;
 
 import edu.unicundi.entity.Libro;
+import edu.unicundi.entity.view_autor_libro;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -25,5 +26,9 @@ public interface ILibroRepo {
     public void editar(Libro libro);
    
     public void eliminar(Libro libro);
+    
+     public Integer CantidadLibros();
+     
+    public List<view_autor_libro> listarLibro(Integer pag, Integer size);
         
 }

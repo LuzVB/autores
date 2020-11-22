@@ -5,6 +5,7 @@
  */
 package edu.unicundi.service;
 
+import edu.unicundi.dto.AbstractFacadePage;
 import edu.unicundi.dto.LibroDto;
 import edu.unicundi.entity.Libro;
 import edu.unicundi.exception.ObjectNotFoundException;
@@ -28,5 +29,7 @@ public interface ILibroService {
     public void editar(Libro libro) throws ParamRequiredException ,ObjectNotFoundException;
    
     public void eliminar(Integer idLibro) throws ObjectNotFoundException;
+    
+    public AbstractFacadePage listarlibros(int pag , int size);
     
 }

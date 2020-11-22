@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -32,7 +34,11 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @XmlRootElement
 @XmlAccessorType(value = XmlAccessType.FIELD)
 @NamedQueries({
-    @NamedQuery(name = "Libro.listarTodo", query = "SELECT a FROM Libro a"),           
+//    @NamedQuery(name = "Libro.listarTodo", query = "SELECT a FROM Libro a"),           
+})
+@NamedNativeQueries({
+      @NamedNativeQuery(name = "Libro.listarTodo", query = "SELECT libro.id,libro.nombre,libro.editorial FROM libro order by id OFFSET ?pag ROWS FETCH FIRST  ?size ROWS ONLY", resultClass = Libro.class),
+    @NamedNativeQuery(name = "Libro.cantidadLibros", query = "select count(id)from libro"),
 })
 public class Libro implements Serializable {
    @Id
@@ -47,7 +53,7 @@ public class Libro implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "id_autor", nullable = false)
-    @XmlTransient
+//    @XmlTransient  la anotacion no permite guardar el autor
     private Autor autor;
 
     public Libro() {

@@ -32,6 +32,7 @@ edu\unicundi\dto\ProfesorA.class
 edu\unicundi\exception\ParamRequiredException.class
 edu\unicundi\service\impl\DatosImpl.class
 edu\unicundi\repo\impl\AutorRepo.class
+edu\unicundi\service\impl\LibroServiceImpl$1.class
 edu\unicundi\dto\Profesor.class
 edu\unicundi\service\impl\AutorServiceImp$2.class
 edu\unicundi\service\impl\LibroServiceImpl.class
@@ -46,9 +47,11 @@ edu\unicundi\repo\IAutorLectorRepo.class
 edu\unicundi\entity\AutorLectorPK_.class
 edu\unicundi\entity\Libro_.class
 edu\unicundi\service\IException.class
+edu\unicundi\entity\view_autor_libro.class
 edu\unicundi\service\impl\AutorServiceImp$1.class
 edu\unicundi\service\impl\AutorServiceImp.class
 edu\unicundi\dto\Materia.class
 edu\unicundi\dto\AbstractFacadePage.class
 edu\unicundi\entity\Direccion.class
 edu\unicundi\dto\AutorLectorDto.class
+edu\unicundi\entity\view_autor_libro_.class
