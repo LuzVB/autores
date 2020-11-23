@@ -1,36 +1,86 @@
 <div>
-  <app-content-header [title]="'Agregar Autor'" [hideBreadcrumb]="false" [hasBgImage]="true" [class]="'pb-4'">
+  <app-content-header
+    [title]="'Agregar Autor'"
+    [hideBreadcrumb]="false"
+    [hasBgImage]="true"
+    [class]="'pb-4'"
+  >
   </app-content-header>
 
   <form [formGroup]="form" #frmAutor="ngForm">
     <mat-card>
       <mat-card-content fxLayout="column" fxLayoutAlign="center">
         <mat-form-field>
-          <input matInput placeholder="Nombre" formControlName="nombre" required>
+          <input
+            matInput
+            placeholder="Nombre"
+            formControlName="nombre"
+            maxlength="12"
+          />
+          <mat-error *ngIf="nombre.invalid && nombre.errors.required"
+            >Nombre es requerido</mat-error
+          >
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Apellido" formControlName="apellido" required>
+          <input
+            matInput
+            placeholder="Apellido"
+            formControlName="apellido"
+            maxlength="30"
+          />
+          <mat-error *ngIf="apellido.invalid && apellido.errors.required"
+            >Apellido es requerido</mat-error
+          >
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="date" placeholder="Fecha" formControlName="fecha" required>
-      </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Barrio" formControlName="barrio" required>
+          <input
+            matInput
+            type="date"
+            placeholder="Fecha"
+            formControlName="fecha"
+            maxlength="35"
+          />
+          <mat-error *ngIf="fecha.invalid && fecha.errors.required"
+            >Fecha es requerido</mat-error
+          >
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Direccion" formControlName="direccion" required>
+          <input matInput placeholder="Barrio" formControlName="barrio" />
+          <mat-error *ngIf="barrio.invalid && barrio.errors.required"
+            >Barrio es requerido</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Direccion"
+            formControlName="direccion"
+          />
+          <mat-error *ngIf="direccion.invalid && direccion.errors.required"
+            >Direccion es requerido</mat-error
+          >
         </mat-form-field>
       </mat-card-content>
-      <button mat-raised-button color="primary" (click)="guardar()"
-        style="background: #108d058e; color:rgb(240, 239, 239)" type="submit" [disabled]="frmAutor.invalid"
-        routerLink="/tables/autores">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="guardar()"
+        style="background: #108d058e; color: rgb(240, 239, 239)"
+        type="submit"
+        [disabled]="frmAutor.invalid"
+        routerLink="/tables/autores"
+      >
         <mat-icon>check</mat-icon>Guardar
       </button>
 
-      <button mat-raised-button color="warn" type="button" routerLink="/tables/autores">
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        routerLink="/tables/autores"
+      >
         <mat-icon>close</mat-icon>Cancelar
       </button>
     </mat-card>
   </form>
-
 </div>

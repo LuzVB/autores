@@ -1,1 +1,94 @@
-<p>libros works!</p>
+<div [hidden]="route.children.length != 0">
+  <app-content-header
+    [title]="'Libros'"
+    [hideBreadcrumb]="false"
+    [hasBgImage]="true"
+    [class]="'pb-4'"
+  ></app-content-header>
+
+  <div fxLayout="column" class="p-2">
+    <div class="p-2">
+      <div fxLayout="column" class="mat-elevation-z8">
+        <mat-form-field class="px-3 py-1">
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Buscar Libro"
+          />
+        </mat-form-field>
+      </div>
+      <mat-table
+        #table
+        [dataSource]="dataSource"
+        matSort
+        class="mat-elevation-z8"
+      >
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            No.
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.idlibro }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="libro">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Libro
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.nombrelibro }}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="editorial">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Editorial
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.editorial }}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="autor">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Autor
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"
+            >{{ element.nombre }} {{ element.apellido }}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button
+              mat-button
+              color="primary"
+              [routerLink]="['/tables/libros/edicion/', element.idlibro]"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="accent" (click)="eliminar(element.idlibro)">
+              <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+      <mat-paginator
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[2, 5, 10, 25, 100]"
+        [length]="cantidad"
+        (page)="cambiarPagina($event)"
+      ></mat-paginator>
+
+      <button
+        mat-fab
+        color="accent"
+        style="float: left"
+        routerLink="/tables/libros/agregar"
+        style="background: #108d058e; color: rgb(240, 239, 239)"
+      >
+        <mat-icon>library_add_check</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

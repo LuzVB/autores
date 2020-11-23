@@ -16,6 +16,7 @@ import { AgregarAutoresComponent } from './autores/agregar-autores/agregar-autor
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LectoresComponent } from './lectores/lectores.component';
 import { AgregarLectoresComponent } from './lectores/agregar-lectores/agregar-lectores.component';
+import { AgregarLibrosComponent } from './libros/agregar-libros/agregar-libros.component';
 
 
 export const routes = [
@@ -37,6 +38,12 @@ export const routes = [
     { path: 'edicion/:id', component: AgregarLectoresComponent }
   ],
    data: { breadcrumb: 'Lectores' } },
+  { path: 'libros', component: LibrosComponent,
+   children: [
+    { path: 'agregar', component: AgregarLibrosComponent },
+    { path: 'edicion/:id', component: AgregarLibrosComponent }
+  ],
+  data: { breadcrumb: 'Libros' } },
   { path: 'sorting', component: SortingComponent, data: { breadcrumb: 'Sorting table' } },
   { path: 'filtering', component: FilteringComponent, data: { breadcrumb: 'Filtering table' } },
   { path: 'selecting', component: SelectingComponent, data: { breadcrumb: 'Selecting table' } },
@@ -58,7 +65,7 @@ export const routes = [
     SortingComponent, 
     FilteringComponent, 
     NgxTableComponent, 
-    SelectingComponent, AutoresComponent, LibrosComponent, AgregarAutoresComponent, LectoresComponent, AgregarLectoresComponent
+    SelectingComponent, AutoresComponent, LibrosComponent, AgregarAutoresComponent, LectoresComponent, AgregarLectoresComponent, AgregarLibrosComponent
   ],
   providers: [
     TablesService

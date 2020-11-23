@@ -1,0 +1,36 @@
+<div>
+  <app-content-header [title]="'Agregar Libro'" [hideBreadcrumb]="false" [hasBgImage]="true" [class]="'pb-4'">
+  </app-content-header>
+
+  <form [formGroup]="form" #frmLector="ngForm">
+    <mat-card>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center">
+        <mat-form-field>
+          <input matInput placeholder="Nombre" formControlName="nombre" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Editorial" formControlName="editorial" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Autores <mat-icon>groups</mat-icon></mat-label>
+          <mat-select [(value)]="selectedValue" formControlName="autor" required>
+            <mat-option *ngFor="let dataAutor of dataAutor" [value]="dataAutor.id"
+              (click)="autorSeleccionado(dataAutor.id)">
+              {{dataAutor.nombre}} {{dataAutor.apellido}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-raised-button color="primary" (click)="guardar()"
+        style="background: #108d058e; color:rgb(240, 239, 239)" type="submit" [disabled]="frmLector.invalid"
+        routerLink="/tables/libros">
+        <mat-icon>check</mat-icon>Guardar
+      </button>
+
+      <button mat-raised-button color="warn" type="button" routerLink="/tables/libros">
+        <mat-icon>close</mat-icon>Cancelar
+      </button>
+    </mat-card>
+  </form>
+
+</div>

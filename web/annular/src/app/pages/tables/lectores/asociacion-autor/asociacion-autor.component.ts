@@ -19,7 +19,7 @@ export class AsociacionAutorComponent implements OnInit {
   id: number;
   idUsuario: number;
   dataAutor:Array<any>;
-  selectedValue : string;;
+  selectedValue : string;
   displayedColumns: string[] = ['nombre','acciones'];
   dataSource = new MatTableDataSource<any>();
  

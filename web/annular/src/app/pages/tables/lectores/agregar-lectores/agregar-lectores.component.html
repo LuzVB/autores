@@ -6,10 +6,16 @@
     <mat-card>
       <mat-card-content fxLayout="column" fxLayoutAlign="center">
         <mat-form-field>
-          <input matInput placeholder="Nombre" formControlName="nombre" required>
+          <input matInput placeholder="Nombre" formControlName="nombre" maxlength="12">
+          <mat-error *ngIf="nombre.invalid && nombre.errors.required"
+            >Nombre es requerido</mat-error
+          >
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Apellido" formControlName="apellido" required>
+          <input matInput placeholder="Apellido" formControlName="apellido" maxlength="30">
+          <mat-error *ngIf="apellido.invalid && apellido.errors.required"
+            >Nombre es requerido</mat-error
+          >
         </mat-form-field>
       </mat-card-content>
       <button mat-raised-button color="primary" (click)="guardar()"
