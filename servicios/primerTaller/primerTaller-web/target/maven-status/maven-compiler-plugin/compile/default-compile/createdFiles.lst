@@ -5,6 +5,7 @@ edu\unicundi\exception\filter\NotFoundExceptionFilter.class
 edu\unicundi\controller\pojo\ErrorWrraper.class
 edu\unicundi\exception\filter\NoValidoExceptionFilter.class
 org\netbeans\rest\application\config\ApplicationConfig.class
+edu\unicundi\controller\CursoController.class
 edu\unicundi\exception\filter\SQLExceptionFilter.class
 edu\unicundi\exception\filter\HttpResponseExceptionFilter.class
 edu\unicundi\exception\filter\WebApplicationExceptionFilter.class

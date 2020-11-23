@@ -99,12 +99,13 @@ public class LibroServiceImpl implements ILibroService {
 
     @Override
     public void eliminar(Integer idLibro) throws  ObjectNotFoundException {
-         Libro libroAux = repo.listarPorId(idLibro);
+        Libro libroAux = repo.listarPorId(idLibro);
          
         if(libroAux == null)
             throw new ObjectNotFoundException("Libro no existe.");
-         
-        repo.eliminar(libroAux);
+        else{
+            repo.eliminar(libroAux);
+        }
     }
     
 }

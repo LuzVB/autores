@@ -17,6 +17,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -54,14 +55,14 @@ public class LibroController {
         return Response.status(Response.Status.OK).entity(libro).build();       
     }      
       
-    @Path("/guardar")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response guardar(@Valid Libro libro) throws ParamRequiredException {
-        service.guardar(libro);
-        return Response.status(Response.Status.CREATED).build();
-    }
+//    @Path("/guardar")
+//    @POST
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public Response guardar(@Valid Libro libro) throws ParamRequiredException {
+//        service.guardar(libro);
+//        return Response.status(Response.Status.CREATED).build();
+//    }
     
     
     @Path("/editar")
@@ -71,5 +72,13 @@ public class LibroController {
     public Response editar(@Valid Libro libro) throws ParamRequiredException, ObjectNotFoundException, ParamUsedException {
         service.editar(libro);
         return Response.status(Response.Status.OK).build();
+    }
+    
+    @Path("/eliminar/{id}")
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response eliminarOpcion2(@PathParam("id" ) Integer id) throws ObjectNotFoundException {
+        service.eliminar(id);
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 }

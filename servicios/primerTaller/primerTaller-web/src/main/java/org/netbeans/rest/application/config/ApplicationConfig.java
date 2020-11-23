@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(edu.unicundi.controller.AutorController.class);
+        resources.add(edu.unicundi.controller.CursoController.class);
         resources.add(edu.unicundi.controller.LibroController.class);
         resources.add(edu.unicundi.controller.MateriaController.class);
         resources.add(edu.unicundi.controller.ProfesorController.class);
